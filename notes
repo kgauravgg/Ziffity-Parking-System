@@ -1,0 +1,37 @@
+    
+    // include 'Database.php';
+
+    // $db = new Database();
+    // $db->insert('student',['student_name'=>'Ram Kumar', 'age'=>'20', 'city'=>'Goa']);
+    // echo "Insert result is : ";
+    // print_r($db->getResult());
+
+    // $db->update('student',['student_name'=>'Kumar Gaurav', 'age'=>'24', 'city'=>'Jaipur'], 'id="1"');
+    // echo "Update result is : ";
+    // print_r($db->getResult());
+
+    // $db->delete('student', 'id="1"');
+    // echo "Delete result is : ";
+    // print_r($db->getResult());
+
+    // $db->selectAll('SELECT * FROM student WHERE age="24"');
+    // echo "Select All result is : ";
+    // print_r($db->getResult());
+
+    // $db->select('student', 'id,student_name', null,null,'student_name',2);
+    // echo "Select result is : ";
+    // print_r($db->getResult());
+
+    step 1 : session_start();
+    step 2 : $_SESSION[name]=value; set session name & value
+    step 3 : echo $_SESSION[name]; get session value
+    
+    Delete Session:
+    step 1 : session_unset(); remove all session variables
+    step 2 : session_destroy(); Destroy the session
+
+    if(isset($_SESSION["name"])){
+
+    }
+
+    <?php $_SERVER['PHP_SELF']; ?>
