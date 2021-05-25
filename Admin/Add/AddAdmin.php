@@ -43,7 +43,7 @@
                 <input type="submit" name="submit" value="Submit" id="submit">
             </form>';
             if(isset($_POST['submit'])){
-                include "Database.php";
+                include "../../Database.php";
                 $database = new Database();
                 array_pop($_POST);
                 $database->insert('admin',$_POST);

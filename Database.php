@@ -46,13 +46,31 @@ class Database {
         }
     }
 
-    public function update($table, $data=array(), $where=null){
+    public function update($table, $data=array(), $updateField=null, $value=null, $where=null){
         if($this->tableExists($table)){
             $args = array();
             foreach($data as $key=>$value){
                 $args[] = "$key = '$value'";
             }
             $sql = "UPDATE $table SET ". implode(', ', $args);
+            if($where != null) {
+                $sql .= " WHERE $where"; 
+            }
+            if($this->mysqli->query($sql)) {
+                array_push($this->result, $this->mysqli->affected_rows);
+                return true;
+            } else {
+                array_push($this->result, $this->mysqli->error);
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function updateValueToExisting($table, $colunName=null, $paymentType, $value=null, $where=null){
+        if($this->tableExists($table)){
+            $sql = "UPDATE $table SET $colunName=$colunName$paymentType$value";
             if($where != null) {
                 $sql .= " WHERE $where"; 
             }
@@ -87,7 +105,7 @@ class Database {
     }
 
     public function select($table, $rows="*", $join = null, $where=null, $order=null, $limit=null){
-        if($this->tableExists($table)){
+        if($this->tableExists($table)){ 
             $sql = "SELECT $rows FROM $table";
             if($join != null){
                 $sql .= " JOIN $join";

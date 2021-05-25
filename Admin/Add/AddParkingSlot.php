@@ -21,35 +21,37 @@
             <a href="../Administrators.php"><button>Administrators</button></a>
             <a href="../../logout.php"><button>Logout</button></a><hr>
 
-            <form action="" method="POST">
+            <form action="'; $_SERVER['PHP_SELF']; echo '" method="POST">
                 <label for="zip_code">Zip Code</label>
-                <input type="text" id="zip_code" name="zip_code"><br>
+                <input type="text" id="zip_code" name="zip_code" maxlength="7" size="7" required><br>
                 <label for="vechil_type">Vehicle Type</label>
-                <select name="vehicle_type" id="vehicle_type">
-                    <option>select</option>
+                <select name="vehicle_type" id="vehicle_type" required>
                     <option value="1">Simple</option>
                     <option value="2">Heavy</option>
                 </select><br>
-                <select name="slot_type" id="slot_type">
-                    <option>select</option>
+                <label for="slot_type">Slot Type</label>
+                <select name="slot_type" id="slot_type" required>
                     <option value="1">Free</option>
                     <option value="2">Paid</option>
                 </select><br>   
-                <label for="no_of_parkin_slot">Number Of Parking Slots</label>
-                <input type="number" name="no_of_parkin_slot" id="no_of_parkin_slot" min="0"><br>
+                <label for="no_of_parking_slots">Number Of Parking Slots</label>
+                <input type="number" name="no_of_parking_slots" id="no_of_parking_slots" min="0" required><br>
+                <label for="charges_per_hour">Charges Per Hour</label>
+                <input type="number" name="charges_per_hour" id="charges_per_hour" min="0" required><br>
                 <label for="cancelation_charge">Cancelation Charge</label>
-                <input type="number" name="cancelation_charge" id="cancelation_charge" min="0"><br>
+                <input type="number" name="cancelation_charge" id="cancelation_charge" min="0" required><br>
                 <label for="cut_off_time">Cut Off Time</label>
-                <input type="datetime-local" name="cut_off_time" id="cut_off_time"><br>
+                <input type="datetime-local" name="cut_off_time" id="cut_off_time" required><br>
                 <input type="submit" id="save" name="save" value="Save">
             </form>';
             if(isset($_POST['save'])){
-                include "Database.php";
+                include "../../Database.php";
                 $database = new Database();
                 array_pop($_POST);
                 $database->insert('parkingslot',$_POST);
                 if($database->getResult()!=null){
                     $header = "Location: ../ParkingSlots.php";
+                    echo "<div class='alert alert-success'>Something is wrong.</div>";
                     header($header);
                 }else {
                     echo "<div class='alert alert-danger'>Something is wrong.</div>";

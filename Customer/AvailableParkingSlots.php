@@ -1,13 +1,15 @@
 <?php
+include '../Database.php';
     session_start();
-    if(isset($_SESSION["admin_user"])){
-        include '../Database.php';
+    if(isset($_SESSION["user"])){
         $database = new Database();
-        $database->select('parkingslot',"*",null,null,null,null);
+        $where = "no_of_parking_slots>'0'";
+        $database->select('parkingslot',"*",null,$where,null,null);
+        // print_r($database->getResult());die;
         echo '<!DOCTYPE html>
         <html>
             <head>
-                <title>Parking Slots</title>
+                <title>Available Parking Slots</title>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -22,13 +24,10 @@
             </head>
         <body>
             
-            <h1><a href="index.php">Admin Dashboard</a></h1><br>
-            <h2>Parking Slots</h2><hr>
-            <a href="index.php"><button>Admin Dashboard</button></a>
-            <a href="Customers.php"><button>Customers</button></a>
-            <a href="Vehicles.php"><button>Vehicles</button></a>
-            <a href="Administrators.php"><button>Administrators</button></a>
-            <a href="RechargeWallet.php"><button>Recharge Wallet</button></a>
+            <h1><a href="index.php">Dashboard</a></h1><br>
+            <h2>Available Parking Slots</h2><hr>
+            <a href="index.php"><button>Dashboard</button></a>
+            <a href="Account.php"><button>My Account</button></a>
             <a href="../logout.php"><button>Logout</button></a><hr>
 
             <a href="Add/AddParkingSlot.php"><button>Add Parking Slot</button></a>
@@ -38,12 +37,10 @@
                     <th>Area Zip</th>
                     <th>Vehicle Type</th>
                     <th>Slot Type</th>
-                    <th>Numbers of Parking Slots</th>
+                    <th>Available Numbers of Slots</th>
                     <th>Charges Per Hour</th>
                     <th>Cancelation Charge</th>
-                    <th>Cut Off Time</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th>Book</th>
                 </tr>';
                 // print_r($database->getResult());die;
                 foreach($database->getResult() as $id => $items){   
@@ -64,15 +61,13 @@
                         echo "<td>".$items['no_of_parking_slots']."</td>";
                         echo "<td>".$items['charges_per_hour']."</td>";
                         echo "<td>".$items['cancelation_charge']."</td>";
-                        echo "<td>".$items['cut_off_time']."</td>";
-                        echo "<td><a href='".$items['id']."'>Update</a></td>";
-                        echo "<td><a href='".$items['id']."'>Delete</a></td>";
+                        echo "<td><a href='BookParkingSlot.php?id=".$items['id']."'>Book</a></td>";
                     echo "</tr>";
                 }
                 echo '
-        </body>
+            </body>
         </html>';     
     }else{
-        header("Location: ../AdminLogin.php");
+        header("Location: ../CustomerLogin.php");
     }
 ?>

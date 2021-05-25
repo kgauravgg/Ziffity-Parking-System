@@ -29,7 +29,7 @@
             <a href="Vehicles.php"><button>Vehicles</button></a>
             <a href="Administrators.php"><button>Administrators</button></a>
             <a href="RechargeWallet.php"><button>Recharge Wallet</button></a>
-            <a href="logout.php"><button>Logout</button></a><hr>
+            <a href="../logout.php"><button>Logout</button></a><hr>
 
             <a href="Add/AddCustomer.php"><button>Add Customer</button></a>
             <table style="width:50%">

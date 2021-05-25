@@ -30,15 +30,13 @@
                         foreach($value as $itemKey => $itemValue){
                             if($itemKey=="role"){
                                 echo $role=$itemValue;
-                            } else if($itemKey=="username"){
+                            }
+                            if($itemKey=="username"){
                                 echo $user = $itemValue;
-                            } else if($itemKey == "password") {
-                                echo $pass = $itemValue;
                             }
                         }
                     }
                     if($user!=null){
-                        echo $user;
                         session_start();
                         $_SESSION["admin_user"]=$user;
                         $_SESSION["role"]=$role;

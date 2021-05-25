@@ -20,7 +20,7 @@
             <a href="ParkingSlots.php"><button>Parking Slots</button></a>
             <a href="Administrators.php"><button>Administrators</button></a>
             <a href="RechargeWallet.php"><button>Recharge Wallet</button></a>
-            <a href="logout.php"><button>Logout</button></a>
+            <a href="../logout.php"><button>Logout</button></a>
         </body>
         </html>';     
     }else{

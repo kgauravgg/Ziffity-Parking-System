@@ -1,5 +1,6 @@
 <?php
     session_start();
+    echo $_SESSION['admin_user']." / ".$_SESSION['role'];
     if(isset($_SESSION["admin_user"])){
         echo '<!DOCTYPE html>
         <html>
@@ -19,7 +20,7 @@
             <a href="Vehicles.php"><button>Vehicles</button></a>
             <a href="Administrators.php"><button>Administrators</button></a>
             <a href="RechargeWallet.php"><button>Recharge Wallet</button></a>
-            <a href="logout.php"><button>Logout</button></a>
+            <a href="../logout.php"><button>Logout</button></a>
         </body>
         </html>';     
     }else{
